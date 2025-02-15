@@ -1,0 +1,84 @@
+/* 
+
+Problem statement 
+
+Collect and save a list of media items from users 
+Collect the name, year, artist and genre and type 
+If the item is a book, ask whether it’s paperback, hardback of ebook 
+If the item is a movie, ask if it’s streaming, 4K or BluRay and who the director is 
+If the item is music, ask if it’s Apple Music, YouTube Music, Amazon Music or a CD 
+
+*/ 
+
+// variable declarations 
+object data // This is a special variable to store the pieces for the storage record 
+string itemType 
+string itemName 
+int itemYear 
+string itemGenre 
+string mediaType 
+string itemArtist 
+float itemLength
+string hasInput 
+string inputTemporary
+
+ 
+
+// See if user has input 
+
+output “Do you have items to enter (y/n)? “ 
+hasInput = input 
+while hasInput == 'Y' BEGIN
+    // get the initial baisc items
+    output "Please enter the item name: "
+    itemName = input
+    output "Please enter the item year: "
+    inputTemporary = input
+    itemYear = toString(inputTemporary)
+    output "Please enter the item genre: "
+    itemGenre = input
+    output "Please enter the item type (book, music, movie): "
+    itemType = input
+    if itemType == 'book' BEGIN
+        output "Please identify if this is an ebook, hardback or paperback book: "
+        mediaType = input
+        output "Please enter the name of the author: "
+        itemArtist = input
+        output "Please enter the number of pages in the book"
+        inputTemporary = input
+        itemLength = toFloat(inputTemporary)
+    END IF
+    else if itemtype == 'music' BEGIN
+        output "Please identify if this is a CD or on YouTube Music, Apple Music or Amazon Music: "
+        mediaType = input
+        output "Please enter the name of the artist: "
+        itemArtist = input
+        output "Please enter the length in minutes of the music: " 
+        inputTemporary = input
+        itemLength = toFloat(inputTemporary)
+    END else if
+    else if itemtype == 'movie' BEGIN
+        output "Please identify if this is a 4k, BluRay or streaming: "
+        mediaType = input
+        output "Please enter the name of the director: "
+        itemArtist = input
+        output "Please enter the length in minutes of the movie: " 
+        inputTemporary = input
+        itemLength = toFloat(inputTemporary)
+    END else if
+    // store everything into the data object
+    data.add("name", itemName)
+    data.add("type", itemType)
+    data.add("media", mediaType)
+    data.add("artist", artist)
+    data.add("length", itemLength)
+    data.add("genre", itemGenre)
+    data.add("name", itemName)
+    // save the item
+    save(data)
+    // Tell the user we're all good
+    output "We have saved the " + itemType + " named " + itemName
+    // see if the user has more input
+    output “Do you have more items to enter (y/n)? “ 
+    hasInput = input 
+END While
