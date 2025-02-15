@@ -22,10 +22,7 @@ float itemLength
 string hasInput 
 string inputTemporary
 
- 
-
 // See if user has input 
-
 output “Do you have items to enter (y/n)? “ 
 hasInput = input 
 while hasInput == 'Y' BEGIN
@@ -34,7 +31,7 @@ while hasInput == 'Y' BEGIN
     itemName = input
     output "Please enter the item year: "
     inputTemporary = input
-    itemYear = toString(inputTemporary)
+    itemYear = toInt(inputTemporary)
     output "Please enter the item genre: "
     itemGenre = input
     output "Please enter the item type (book, music, movie): "
@@ -82,3 +79,4 @@ while hasInput == 'Y' BEGIN
     output “Do you have more items to enter (y/n)? “ 
     hasInput = input 
 END While
+// End of program
