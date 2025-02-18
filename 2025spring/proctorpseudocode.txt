@@ -25,7 +25,7 @@ string inputTemporary
 // See if user has input 
 output “Do you have items to enter (y/n)? “ 
 hasInput = input 
-while hasInput == 'Y' BEGIN
+while hasInput == "Y" BEGIN
     // get the initial baisc items
     output "Please enter the item name: "
     itemName = input
@@ -36,7 +36,7 @@ while hasInput == 'Y' BEGIN
     itemGenre = input
     output "Please enter the item type (book, music, movie): "
     itemType = input
-    if itemType == 'book' BEGIN
+    if itemType == "book" BEGIN
         output "Please identify if this is an ebook, hardback or paperback book: "
         mediaType = input
         output "Please enter the name of the author: "
@@ -45,7 +45,7 @@ while hasInput == 'Y' BEGIN
         inputTemporary = input
         itemLength = toFloat(inputTemporary)
     END IF
-    else if itemtype == 'music' BEGIN
+    else if itemtype == "music" BEGIN
         output "Please identify if this is a CD or on YouTube Music, Apple Music or Amazon Music: "
         mediaType = input
         output "Please enter the name of the artist: "
@@ -54,7 +54,7 @@ while hasInput == 'Y' BEGIN
         inputTemporary = input
         itemLength = toFloat(inputTemporary)
     END else if
-    else if itemtype == 'movie' BEGIN
+    else if itemtype == "movie" BEGIN
         output "Please identify if this is a 4k, BluRay or streaming: "
         mediaType = input
         output "Please enter the name of the director: "
@@ -73,7 +73,7 @@ while hasInput == 'Y' BEGIN
     data.add("name", itemName)
     // save the item
     save(data)
-    // Tell the user we're all good
+    // Tell the user we"re all good
     output "We have saved the " + itemType + " named " + itemName
     // see if the user has more input
     output “Do you have more items to enter (y/n)? “ 
