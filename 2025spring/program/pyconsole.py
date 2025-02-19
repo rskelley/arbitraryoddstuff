@@ -58,7 +58,7 @@ while hasInput == "Y":
     data["name"] = itemName
     # save the item
     with open("datafile.json","a") as f:
-        f.write(json.dumps(data))
+        f.writelines(json.dumps(data)+"\n")
     # Tell the user we"re all good
     print("We have saved the ",itemType," named ",itemName)
     # see if the user has more input
