@@ -99,7 +99,6 @@
                 let el = document.querySelector("select#itemtype")
                 el.onchange = (e)=>{
                     clearMediaOpts()
-                    console.log(e)
                     let val = e.target.value
                     if (val == 'movie') {
                         populateOptions(data.movieOptions)
@@ -142,7 +141,10 @@
             }
             const buildTable = function() {
                 let tbodyEl = document.querySelector("table tbody")
-                tbodyEl.rows.innerHTML = ""
+                let rowCount = tbodyEl.rows.length
+                for(ndx=0;ndx<rowCount;ndx++) {
+                    tbodyEl.deleteRow(0);
+                }
                 colNames = ['name','year','genre','type','media','artist','length']
                 for(ndx=0;ndx<data.items.length;ndx++){
                     let tr = document.createElement('tr')
