@@ -1,0 +1,164 @@
+<html>
+    <head>
+        <title>Inventory Collector</title>
+        <style>
+            h3 { 
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            label {
+                min-width: 10em;
+                display: inline-block;
+                text-align: right;
+                padding-right: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Inventory Collection</h3>
+        <section id='part1'>
+            <div>
+                <label for="itemname">Item Name:</label>
+                <input id="itemname" placeholder="Name">
+            </div>
+            <div>
+                <label for="itemyear">Item Year:</label>
+                <input id="itemyear" placeholder="Year">
+            </div>
+            <div>
+                <label for="itemgenre">Item Genre:</label>
+                <input id="itemgenre" placeholder="Genre">
+            </div>
+            <div>
+                <label for="itemtype">Item Type:</label>
+                <select id="itemtype">
+                    <option value="--">Select an option</option>
+                    <option value="book" >Book</option>
+                    <option value="movie">Movie</option>
+                    <option value="music">Music</option>
+                </select>
+            </div>
+            <div>
+                <label for="itemtype">Media Type:</label>
+                <select id="mediatype">
+                </select>
+            </div>
+            <div>
+                <label for="itemartist" id="labelartist">Item Artist:</label>
+                <input id="itemartist" placeholder="Artist">
+            </div>
+            <div>
+                <label for="itemlength" id="labellength">Item Length:</label>
+                <input id="itemlength" placeholder="Length">
+            </div>
+            <div><label></label>
+            <button type='button' id='savebtn'>Save</button></div>
+        </section>
+        <section>
+            <h3>Report</h3>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Year</th>
+                            <th>Genre</th>
+                            <th>Type</th>
+                            <th>Media Type</th>
+                            <th>Artist</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+        <script>
+            const data = {
+                'mediaTypeEl': '',
+                'artistEl': '',
+                'lengthEl': '',
+                'bookOptions' : ['ebook','paperback','hardback'],
+                'movieOptions': ['4k','BluRay','streaming'],
+                'musicOptions': ['CD','Apple Music','YoutubeMusic','AppleMusic'],
+                'items': []
+            }
+            const populateOptions = (optionsAr)=>{
+                data.mediaTypeEl.options = []
+                for(ndx=0;ndx<optionsAr.length;ndx++) {
+                    let el = document.createElement('option')
+                    el.innerText = optionsAr[ndx]
+                    data.mediaTypeEl.appendChild(el)
+                }
+            }
+            const setListeners = ()=>{
+                data.mediaTypeEl = document.querySelector("select#mediatype")
+                data.artistEl = document.querySelector("#labelartist")
+                data.lengthEl = document.querySelector("#itemlength")
+                let el = document.querySelector("select#itemtype")
+                el.onchange = (e)=>{
+                    clearMediaOpts()
+                    console.log(e)
+                    let val = e.target.value
+                    if (val == 'movie') {
+                        populateOptions(data.movieOptions)
+                        data.artistEl.innerText = 'Item Director'
+                        data.lengthEl.placeholder = 'Minutes'
+                    }
+                    else if (val =='book') {
+                        populateOptions(data.bookOptions)
+                        data.artistEl.innerText = 'Item Author'
+                        data.lengthEl.placeholder = 'Pages'
+                    }
+                    else if (val =='music') {
+                        populateOptions(data.musicOptions)
+                        data.artistEl.innerText = 'Item Artist'
+                        data.lengthEl.placeholder = 'Minutes'
+                    }
+                }
+                el = document.querySelector("button#savebtn")
+                el.onclick = (e)=>{
+                    let row = {
+                        'name': document.querySelector("input#itemname").value,
+                        'year': document.querySelector("input#itemyear").value,
+                        'genre': document.querySelector("input#itemgenre").value,
+                        'type':  document.querySelector("select#itemtype").value,
+                        'media':  document.querySelector("select#mediatype").value,
+                        'length':  document.querySelector("input#itemlength").value,
+                        'artist': document.querySelector("input#itemartist").value
+                    }
+                    data.items.push(row)
+                    buildTable()
+                    document.querySelector("input#itemname").value = ''
+                    document.querySelector("input#itemyear").value = ''
+                    document.querySelector("input#itemgenre").value = ''
+                    document.querySelector("select#itemtype").valu = ''
+                    document.querySelector("select#mediatype").value = ''
+                    document.querySelector("input#itemlength").value = ''
+                    document.querySelector("input#itemartist").value = ''
+
+                }
+            }
+            const buildTable = function() {
+                let tbodyEl = document.querySelector("table tbody")
+                tbodyEl.rows.innerHTML = ""
+                colNames = ['name','year','genre','type','media','artist','length']
+                for(ndx=0;ndx<data.items.length;ndx++){
+                    let tr = document.createElement('tr')
+                    for(col=0;col<colNames.length;col++) { 
+                        let td = document.createElement('td')
+                        td.innerHTML = data.items[ndx][colNames[col]]
+                        tr.append(td)
+                    }
+                    tbodyEl.append(tr)
+                }
+            }
+            const clearMediaOpts = function() {
+                data.mediaTypeEl.innerHTML = ""
+            }
+            clearMediaOpts()
+            setListeners()
+        </script>
+    </body>
+</html>

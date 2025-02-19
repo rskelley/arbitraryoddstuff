@@ -45,7 +45,7 @@ while hasInput == "Y" BEGIN
         inputTemporary = input
         itemLength = toFloat(inputTemporary)
     END IF
-    else if itemtype == "music" BEGIN
+    else if itemType == "music" BEGIN
         output "Please identify if this is a CD or on YouTube Music, Apple Music or Amazon Music: "
         mediaType = input
         output "Please enter the name of the artist: "
@@ -54,7 +54,7 @@ while hasInput == "Y" BEGIN
         inputTemporary = input
         itemLength = toFloat(inputTemporary)
     END else if
-    else if itemtype == "movie" BEGIN
+    else if itemType == "movie" BEGIN
         output "Please identify if this is a 4k, BluRay or streaming: "
         mediaType = input
         output "Please enter the name of the director: "
@@ -67,7 +67,7 @@ while hasInput == "Y" BEGIN
     data.add("name", itemName)
     data.add("type", itemType)
     data.add("media", mediaType)
-    data.add("artist", artist)
+    data.add("artist", itemArtist)
     data.add("length", itemLength)
     data.add("genre", itemGenre)
     data.add("name", itemName)
