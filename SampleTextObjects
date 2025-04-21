@@ -1,0 +1,35 @@
+class PeopleMover {
+  public integer capacity;
+  public string name;
+}
+
+class Car extends PeopleMover {
+   public string make;
+   public string fuelType;
+   public Car() {
+      capacity = 4;
+      name= "";
+      make = "";
+      fuelType = "gas";
+   }
+   public Car(string carMake, string ftInput) {
+      capacity = 4;
+      name= "";
+      make = carMake;
+      fuelType = ftInput;
+   }
+}
+
+class Bus extends PeopleMover {
+   integer numberOfSeats;
+   public Bus() {
+     capacity = 20;
+     fuelType = 'diesel'
+     setSeats()
+   }
+   private void setSeats() {
+      seats = capacity/2;
+   }
+}
+
+Car myCar = new Car()
